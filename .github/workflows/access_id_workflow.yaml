@@ -1,0 +1,21 @@
+name: Access ID Workflow
+
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  print-access-id:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Checkout the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      # Print the ACCESS_ID from GitHub repository variables
+      - name: Print ACCESS_ID
+        run: |
+          echo "The ACCESS_ID is ${{ secrets.ACCESS_ID }}"
+
