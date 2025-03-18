@@ -3,24 +3,22 @@ name: Retrieve ACCESS_ID
 on:
   push:
     branches:
-      - main  # Runs workflow on push to main branch
+      - main
 
 jobs:
   print-access-id:
-    runs-on: ubuntu-latest  # Use latest Ubuntu runner
+    runs-on: ubuntu-latest  # Use Ubuntu latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set Environment Variable
+        run: echo "ACCESS_ID=${{ vars.ACCESS_ID }}" >> $GITHUB_ENV
+
       - name: Print ACCESS_ID
         run: |
-          echo "Checking GitHub Variables..."
-          if [[ -z "${{ vars.ACCESS_ID }}" ]]; then
-            echo "ERROR: ACCESS_ID is not set!"
-            exit 1
-          else
-            echo "The ACCESS_ID is ${{ vars.ACCESS_ID }}"
-          fi
+          echo "The ACCESS_ID is $ACCESS_ID"
+          
       - name: Debug Environment
         run: env | sort
 
