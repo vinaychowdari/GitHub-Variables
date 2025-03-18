@@ -21,4 +21,6 @@ jobs:
           else
             echo "The ACCESS_ID is ${{ vars.ACCESS_ID }}"
           fi
+      - name: Debug Environment
+        run: env | sort
 
