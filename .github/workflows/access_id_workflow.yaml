@@ -18,4 +18,18 @@ jobs:
       - name: Print ACCESS_ID
         run: |
           echo "The ACCESS_ID is ${{ secrets.ACCESS_ID }}"
+name: Retrieve ACCESS_ID
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow on push to the main branch
+
+jobs:
+  print-access-id:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    steps:
+      - name: Print ACCESS_ID
+        run: |
+          echo "The ACCESS_ID is ${{ vars.ACCESS_ID }}"  # Correctly referencing the GitHub variable
 
